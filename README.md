@@ -2,7 +2,9 @@ OVERFITTING VÀ PHƯƠNG PHÁP K-CROSS VALIDATION
 
 1. Giới thiệu
 
+
 2. Mục đích đề tài
+Mục tiêu của bài lab là nghiên cứu hiện tượng Overfitting trong Machine Learning thông qua việc chủ động xây dựng một mô hình có độ phức tạp vừa phải, quan sát sự khác biệt giữa hiệu năng trên tập huấn luyện và tập dữ liệu test, sau đó áp dụng K-Cross Validation để đánh giá khả năng tổng quát hóa đồng thời hỗ trợ lựa chọn hyperparameter phù hợp nhằm giảm hiện tượng Overfitting.
 
 3. Tập dữ liệu
 
