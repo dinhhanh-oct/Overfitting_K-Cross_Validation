@@ -1,25 +1,25 @@
-OVERFITTING AND K-CROSS VALIDATION
+OVERFITTING VÀ PHƯƠNG PHÁP K-CROSS VALIDATION
 
-1. Introduction
+1. Giới thiệu
 
-2. Objectives
+2. Mục đích đề tài
 
-3. Dataset
+3. Tập dữ liệu
 
-4. Experimental Workflow
+4. Quy trình thực nghiệm
 
-5. Creating Overfitting
+5. Tạo Overfitting
 
-6. Detecting Overfitting
+6. Phát hiện Overfitting
 
 7. K-Cross Validation
 
-8. Hyperparameter Tuning
+8. Tinh chỉnh siêu tham số
 
-9. Results
+9. Kết quả
 
-10. Visualization
+10. Trực quan hóa
 
-11. Conclusion
+11. Các bước chạy
 
-12. How to Run
+12. Kết luận
