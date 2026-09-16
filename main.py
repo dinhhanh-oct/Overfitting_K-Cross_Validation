@@ -105,3 +105,21 @@ plt.legend(); plt.grid(alpha=.3); plt.tight_layout()
 plt.savefig("learning_curve.png", dpi=130)
 plt.close()
 
+# ------------------------------------------------------------
+# PIPELINE + GRIDSEARCHCV (hyperparameter tuning, Not Test Set)
+# ------------------------------------------------------------
+pipe = Pipeline([
+    ("scaler", StandardScaler()),   # fit chi tren Train, ben trong moi fold cua CV
+    ("model", DecisionTreeClassifier(random_state=RANDOM_STATE))
+])
+param_grid = {
+    "model__max_depth": [2, 3, 4, 5, 6, 8, 10, None],
+    "model__min_samples_split": [2, 5, 10],
+    "model__min_samples_leaf": [1, 2, 4],
+}
+grid = GridSearchCV(pipe, param_grid, cv=skf5, scoring="f1", n_jobs=-1)
+grid.fit(X_train, y_train)
+print("\nBest params:", grid.best_params_)
+print("Best CV F1:", grid.best_score_)
+tuned_model = grid.best_estimator_
+
