@@ -13,3 +13,19 @@ from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score,
     ConfusionMatrixDisplay
 )
+
+RANDOM_STATE = 42
+
+# ------------------------------------------------------------
+# LOAD & INSPECT DATASET
+# ------------------------------------------------------------
+data = load_breast_cancer()
+X = pd.DataFrame(data.data, columns=data.feature_names)
+y = pd.Series(data.target, name="target")   # 0 = malignant, 1 = benign
+
+print("Shape:", X.shape)
+print(X.head())
+print(X.describe())
+print("Missing values:", X.isnull().sum().sum())
+print("Target distribution:\n", y.value_counts())
+
