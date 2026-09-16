@@ -8,21 +8,3 @@ OVERFITTING VÀ PHƯƠNG PHÁP K-CROSS VALIDATION
 
 3. Tập dữ liệu
 - Bài lab sử dụng tập dữ liệu Breast Cancer Wisconsin (Diagnostic) để đi sâu phân tích, nghiên cứu. Bên cạnh đó, model chính được lựa chọn là Decision Tree Classifier.
-
-4. Quy trình thực nghiệm
-
-5. Tạo Overfitting
-
-6. Phát hiện Overfitting
-
-7. K-Cross Validation
-
-8. Tinh chỉnh siêu tham số
-
-9. Kết quả
-
-10. Trực quan hóa
-
-11. Các bước chạy
-
-12. Kết luận
