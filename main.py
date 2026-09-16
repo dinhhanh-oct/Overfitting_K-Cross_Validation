@@ -67,3 +67,25 @@ for k in [3, 5, 7]:
     scores = cross_val_score(overfit_model, X_train, y_train, cv=skf, scoring="accuracy")
     print(f"K={k:2d} | mean={scores.mean():.4f} std={scores.std():.4f} | folds={np.round(scores,3)}")
 
+# ------------------------------------------------------------
+# max_depth (bias-variance sweep) with 5-fold CV
+# ------------------------------------------------------------
+skf5 = StratifiedKFold(n_splits=5, shuffle=True, random_state=RANDOM_STATE)
+depths = list(range(1, 16))
+train_scores, cv_means, cv_stds = [], [], []
+for d in depths:
+    m = DecisionTreeClassifier(max_depth=d, random_state=RANDOM_STATE)
+    m.fit(X_train, y_train)
+    train_scores.append(m.score(X_train, y_train))
+    s = cross_val_score(m, X_train, y_train, cv=skf5, scoring="accuracy")
+    cv_means.append(s.mean()); cv_stds.append(s.std())
+
+plt.figure(figsize=(8, 5))
+plt.plot(depths, train_scores, marker='o', label="Training Accuracy")
+plt.errorbar(depths, cv_means, yerr=cv_stds, marker='s', capsize=3, label="CV Mean (+/- std)")
+plt.xlabel("max_depth"); plt.ylabel("Accuracy")
+plt.title("Model Complexity vs Performance")
+plt.legend(); plt.grid(alpha=.3); plt.tight_layout()
+plt.savefig("complexity_vs_performance.png", dpi=130)
+plt.close()
+
