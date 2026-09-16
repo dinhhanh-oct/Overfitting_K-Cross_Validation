@@ -123,3 +123,21 @@ print("\nBest params:", grid.best_params_)
 print("Best CV F1:", grid.best_score_)
 tuned_model = grid.best_estimator_
 
+# ------------------------------------------------------------
+# FINAL TEST ON TEST SET (only once)
+# ------------------------------------------------------------
+print("\n--- FINAL TEST EVALUATION ---")
+print("Overfit model:"); report(overfit_model, X_test, y_test, "Test")
+print("Tuned model:");   report(tuned_model, X_test, y_test, "Test")
+
+results_table = pd.DataFrame({
+    "Model": ["Overfit (max_depth=None)", "Tuned (GridSearchCV)"],
+    "Train Acc": [overfit_model.score(X_train, y_train), tuned_model.score(X_train, y_train)],
+    "CV Mean (5-fold)": [
+        cross_val_score(overfit_model, X_train, y_train, cv=skf5).mean(),
+        cross_val_score(tuned_model, X_train, y_train, cv=skf5).mean()
+    ],
+    "Test Acc": [overfit_model.score(X_test, y_test), tuned_model.score(X_test, y_test)],
+})
+print(results_table)
+
