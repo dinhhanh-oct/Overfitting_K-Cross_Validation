@@ -29,3 +29,12 @@ print(X.describe())
 print("Missing values:", X.isnull().sum().sum())
 print("Target distribution:\n", y.value_counts())
 
+
+# ------------------------------------------------------------
+# TRAIN/TEST SPLIT (then lock train/test set)
+# ------------------------------------------------------------
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.20, random_state=RANDOM_STATE, stratify=y
+)
+print("Train:", X_train.shape, "Test:", X_test.shape)
+
