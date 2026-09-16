@@ -89,3 +89,19 @@ plt.legend(); plt.grid(alpha=.3); plt.tight_layout()
 plt.savefig("complexity_vs_performance.png", dpi=130)
 plt.close()
 
+# ------------------------------------------------------------
+# LEARNING CURVE (model overfitting)
+# ------------------------------------------------------------
+train_sizes, train_sc, val_sc = learning_curve(
+    overfit_model, X_train, y_train, cv=skf5, scoring="accuracy",
+    train_sizes=np.linspace(0.1, 1.0, 8), random_state=RANDOM_STATE
+)
+plt.figure(figsize=(8, 5))
+plt.plot(train_sizes, train_sc.mean(axis=1), marker='o', label="Training score")
+plt.plot(train_sizes, val_sc.mean(axis=1), marker='s', label="CV score")
+plt.xlabel("Training set size"); plt.ylabel("Accuracy")
+plt.title("Learning Curve - Overfit Decision Tree")
+plt.legend(); plt.grid(alpha=.3); plt.tight_layout()
+plt.savefig("learning_curve.png", dpi=130)
+plt.close()
+
