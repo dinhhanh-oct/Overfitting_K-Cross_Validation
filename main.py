@@ -38,3 +38,23 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 print("Train:", X_train.shape, "Test:", X_test.shape)
 
+# ------------------------------------------------------------
+# MODEL OVERFITTING
+# ------------------------------------------------------------
+overfit_model = DecisionTreeClassifier(max_depth=None, random_state=RANDOM_STATE)
+overfit_model.fit(X_train, y_train)
+
+def report(model, X_, y_true, name):
+    pred = model.predict(X_)
+    acc = accuracy_score(y_true, pred)
+    prec = precision_score(y_true, pred)
+    rec = recall_score(y_true, pred)
+    f1 = f1_score(y_true, pred)
+    print(f"{name:12s} | Acc={acc:.4f} Prec={prec:.4f} Rec={rec:.4f} F1={f1:.4f}")
+    return acc, prec, rec, f1
+
+print("\n--- Overfitting model ---")
+report(overfit_model, X_train, y_train, "Train")
+report(overfit_model, X_test, y_test, "Test")
+print("Depth:", overfit_model.get_depth(), "| Leaves:", overfit_model.get_n_leaves())
+
