@@ -58,3 +58,12 @@ report(overfit_model, X_train, y_train, "Train")
 report(overfit_model, X_test, y_test, "Test")
 print("Depth:", overfit_model.get_depth(), "| Leaves:", overfit_model.get_n_leaves())
 
+# ------------------------------------------------------------
+# K-CROSS VALIDATION: Compare K = 3, 5, 7
+# ------------------------------------------------------------
+print("\n--- K-Cross comparison (StratifiedKCross, accuracy) ---")
+for k in [3, 5, 7]:
+    skf = StratifiedKFold(n_splits=k, shuffle=True, random_state=RANDOM_STATE)
+    scores = cross_val_score(overfit_model, X_train, y_train, cv=skf, scoring="accuracy")
+    print(f"K={k:2d} | mean={scores.mean():.4f} std={scores.std():.4f} | folds={np.round(scores,3)}")
+
