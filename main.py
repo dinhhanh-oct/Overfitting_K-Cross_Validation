@@ -141,3 +141,28 @@ results_table = pd.DataFrame({
 })
 print(results_table)
 
+# ------------------------------------------------------------
+# CONFUSION MATRIX + TREE PLOT
+# ------------------------------------------------------------
+fig, axes = plt.subplots(1, 2, figsize=(10, 4.5))
+ConfusionMatrixDisplay.from_estimator(overfit_model, X_test, y_test,
+                                       display_labels=data.target_names, ax=axes[0], colorbar=False)
+axes[0].set_title("Overfit Model (Test Set)")
+ConfusionMatrixDisplay.from_estimator(tuned_model, X_test, y_test,
+                                       display_labels=data.target_names, ax=axes[1], colorbar=False)
+axes[1].set_title("Tuned Model (Test Set)")
+plt.tight_layout()
+plt.savefig("confusion_matrices.png", dpi=130)
+plt.close()
+
+plt.figure(figsize=(14, 7))
+plot_tree(tuned_model.named_steps["model"], max_depth=3, feature_names=data.feature_names,
+          class_names=data.target_names, filled=True, fontsize=7)
+plt.title("Tuned Decision Tree - top 3 levels (full depth=%d)"
+          % tuned_model.named_steps["model"].get_depth())
+plt.tight_layout()
+plt.savefig("tree_tuned.png", dpi=130)
+plt.close()
+
+print("\nDone. Plots saved: complexity_vs_performance.png, learning_curve.png, "
+      "confusion_matrices.png, tree_tuned.png")
